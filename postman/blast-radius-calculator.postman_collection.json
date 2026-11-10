@@ -1,0 +1,995 @@
+{
+  "info": {
+    "name": "Blast Radius Calculator Postman Collection",
+    "description": "Pre-deployment impact analysis engine. Before a change reaches production, \ncalculates exactly how many users, revenue, regions, and downstream services \nwould be affected if it goes wrong. Uses the service dependency graph, live \ntraffic patterns, customer tiers, and revenue attribution to answer the \nquestion every release manager asks: \"What's the worst-case scenario?\"\nProvides data-driven recommendations for canary percentage, rollback \ntriggers, and deploy timing.\n\nOpenAPI version: 3.0.3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://blast-radius-calculator-spipnh6wiq-uc.a.run.app/v1",
+      "type": "string",
+      "description": "Override with the base URL of the deployed Kong gateway."
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "targetService",
+      "value": "",
+      "type": "string",
+      "description": "Filter by target service."
+    },
+    {
+      "key": "environment",
+      "value": "",
+      "type": "string",
+      "description": "Filter by environment."
+    },
+    {
+      "key": "riskLevel",
+      "value": "",
+      "type": "string",
+      "description": "Filter by computed risk level."
+    },
+    {
+      "key": "changeType",
+      "value": "",
+      "type": "string",
+      "description": "Filter by change type."
+    },
+    {
+      "key": "requiresApproval",
+      "value": "",
+      "type": "string",
+      "description": "Only include analyses that required approval."
+    },
+    {
+      "key": "fromDate",
+      "value": "",
+      "type": "string",
+      "description": "Only include analyses after this time."
+    },
+    {
+      "key": "toDate",
+      "value": "",
+      "type": "string",
+      "description": "Only include analyses before this time."
+    },
+    {
+      "key": "page",
+      "value": "",
+      "type": "string",
+      "description": "Page number (zero-based)."
+    },
+    {
+      "key": "size",
+      "value": "",
+      "type": "string",
+      "description": "Number of items per page."
+    },
+    {
+      "key": "analysisId",
+      "value": "",
+      "type": "string",
+      "description": "Unique identifier of the analysis."
+    },
+    {
+      "key": "includeDependencyGraph",
+      "value": "",
+      "type": "string",
+      "description": "Include the full dependency graph."
+    },
+    {
+      "key": "includeRevenueBreakdown",
+      "value": "",
+      "type": "string",
+      "description": "Include per-tier revenue impact."
+    }
+  ],
+  "item": [
+    {
+      "name": "Analyze the blast radius of a proposed production change",
+      "request": {
+        "method": "POST",
+        "description": "Analyze the blast radius of a proposed production change\n\nResponses:\n- 202: Blast radius analysis accepted and running.\n- 400: Response\n- 404: Target service not found in dependency graph.\n- 500: Response",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/blast-radius",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "blast-radius"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "202 Blast radius analysis accepted and running.",
+          "originalRequest": {
+            "method": "POST",
+            "description": "Analyze the blast radius of a proposed production change\n\nResponses:\n- 202: Blast radius analysis accepted and running.\n- 400: Response\n- 404: Target service not found in dependency graph.\n- 500: Response",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Blast radius analysis accepted and running.",
+          "code": 202,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "400",
+          "originalRequest": {
+            "method": "POST",
+            "description": "Analyze the blast radius of a proposed production change\n\nResponses:\n- 202: Blast radius analysis accepted and running.\n- 400: Response\n- 404: Target service not found in dependency graph.\n- 500: Response",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "400",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "404 Target service not found in dependency graph.",
+          "originalRequest": {
+            "method": "POST",
+            "description": "Analyze the blast radius of a proposed production change\n\nResponses:\n- 202: Blast radius analysis accepted and running.\n- 400: Response\n- 404: Target service not found in dependency graph.\n- 500: Response",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Target service not found in dependency graph.",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "500",
+          "originalRequest": {
+            "method": "POST",
+            "description": "Analyze the blast radius of a proposed production change\n\nResponses:\n- 202: Blast radius analysis accepted and running.\n- 400: Response\n- 404: Target service not found in dependency graph.\n- 500: Response",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "500",
+          "code": 500,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "List past blast radius analyses",
+      "request": {
+        "method": "GET",
+        "description": "List past blast radius analyses\n\nResponses:\n- 200: List of analyses retrieved successfully.\n- 400: Response\n- 500: Response",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/blast-radius?targetService={{targetService}}&environment={{environment}}&riskLevel={{riskLevel}}&changeType={{changeType}}&requiresApproval={{requiresApproval}}&fromDate={{fromDate}}&toDate={{toDate}}&page={{page}}&size={{size}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "blast-radius"
+          ],
+          "query": [
+            {
+              "key": "targetService",
+              "value": "{{targetService}}",
+              "disabled": true,
+              "description": "Filter by target service."
+            },
+            {
+              "key": "environment",
+              "value": "{{environment}}",
+              "disabled": true,
+              "description": "Filter by environment."
+            },
+            {
+              "key": "riskLevel",
+              "value": "{{riskLevel}}",
+              "disabled": true,
+              "description": "Filter by computed risk level."
+            },
+            {
+              "key": "changeType",
+              "value": "{{changeType}}",
+              "disabled": true,
+              "description": "Filter by change type."
+            },
+            {
+              "key": "requiresApproval",
+              "value": "{{requiresApproval}}",
+              "disabled": true,
+              "description": "Only include analyses that required approval."
+            },
+            {
+              "key": "fromDate",
+              "value": "{{fromDate}}",
+              "disabled": true,
+              "description": "Only include analyses after this time."
+            },
+            {
+              "key": "toDate",
+              "value": "{{toDate}}",
+              "disabled": true,
+              "description": "Only include analyses before this time."
+            },
+            {
+              "key": "page",
+              "value": "{{page}}",
+              "disabled": true,
+              "description": "Page number (zero-based)."
+            },
+            {
+              "key": "size",
+              "value": "{{size}}",
+              "disabled": true,
+              "description": "Number of items per page."
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 List of analyses retrieved successfully.",
+          "originalRequest": {
+            "method": "GET",
+            "description": "List past blast radius analyses\n\nResponses:\n- 200: List of analyses retrieved successfully.\n- 400: Response\n- 500: Response",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius?targetService={{targetService}}&environment={{environment}}&riskLevel={{riskLevel}}&changeType={{changeType}}&requiresApproval={{requiresApproval}}&fromDate={{fromDate}}&toDate={{toDate}}&page={{page}}&size={{size}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius"
+              ],
+              "query": [
+                {
+                  "key": "targetService",
+                  "value": "{{targetService}}",
+                  "disabled": true,
+                  "description": "Filter by target service."
+                },
+                {
+                  "key": "environment",
+                  "value": "{{environment}}",
+                  "disabled": true,
+                  "description": "Filter by environment."
+                },
+                {
+                  "key": "riskLevel",
+                  "value": "{{riskLevel}}",
+                  "disabled": true,
+                  "description": "Filter by computed risk level."
+                },
+                {
+                  "key": "changeType",
+                  "value": "{{changeType}}",
+                  "disabled": true,
+                  "description": "Filter by change type."
+                },
+                {
+                  "key": "requiresApproval",
+                  "value": "{{requiresApproval}}",
+                  "disabled": true,
+                  "description": "Only include analyses that required approval."
+                },
+                {
+                  "key": "fromDate",
+                  "value": "{{fromDate}}",
+                  "disabled": true,
+                  "description": "Only include analyses after this time."
+                },
+                {
+                  "key": "toDate",
+                  "value": "{{toDate}}",
+                  "disabled": true,
+                  "description": "Only include analyses before this time."
+                },
+                {
+                  "key": "page",
+                  "value": "{{page}}",
+                  "disabled": true,
+                  "description": "Page number (zero-based)."
+                },
+                {
+                  "key": "size",
+                  "value": "{{size}}",
+                  "disabled": true,
+                  "description": "Number of items per page."
+                }
+              ]
+            }
+          },
+          "status": "List of analyses retrieved successfully.",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "400",
+          "originalRequest": {
+            "method": "GET",
+            "description": "List past blast radius analyses\n\nResponses:\n- 200: List of analyses retrieved successfully.\n- 400: Response\n- 500: Response",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius?targetService={{targetService}}&environment={{environment}}&riskLevel={{riskLevel}}&changeType={{changeType}}&requiresApproval={{requiresApproval}}&fromDate={{fromDate}}&toDate={{toDate}}&page={{page}}&size={{size}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius"
+              ],
+              "query": [
+                {
+                  "key": "targetService",
+                  "value": "{{targetService}}",
+                  "disabled": true,
+                  "description": "Filter by target service."
+                },
+                {
+                  "key": "environment",
+                  "value": "{{environment}}",
+                  "disabled": true,
+                  "description": "Filter by environment."
+                },
+                {
+                  "key": "riskLevel",
+                  "value": "{{riskLevel}}",
+                  "disabled": true,
+                  "description": "Filter by computed risk level."
+                },
+                {
+                  "key": "changeType",
+                  "value": "{{changeType}}",
+                  "disabled": true,
+                  "description": "Filter by change type."
+                },
+                {
+                  "key": "requiresApproval",
+                  "value": "{{requiresApproval}}",
+                  "disabled": true,
+                  "description": "Only include analyses that required approval."
+                },
+                {
+                  "key": "fromDate",
+                  "value": "{{fromDate}}",
+                  "disabled": true,
+                  "description": "Only include analyses after this time."
+                },
+                {
+                  "key": "toDate",
+                  "value": "{{toDate}}",
+                  "disabled": true,
+                  "description": "Only include analyses before this time."
+                },
+                {
+                  "key": "page",
+                  "value": "{{page}}",
+                  "disabled": true,
+                  "description": "Page number (zero-based)."
+                },
+                {
+                  "key": "size",
+                  "value": "{{size}}",
+                  "disabled": true,
+                  "description": "Number of items per page."
+                }
+              ]
+            }
+          },
+          "status": "400",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "500",
+          "originalRequest": {
+            "method": "GET",
+            "description": "List past blast radius analyses\n\nResponses:\n- 200: List of analyses retrieved successfully.\n- 400: Response\n- 500: Response",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius?targetService={{targetService}}&environment={{environment}}&riskLevel={{riskLevel}}&changeType={{changeType}}&requiresApproval={{requiresApproval}}&fromDate={{fromDate}}&toDate={{toDate}}&page={{page}}&size={{size}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius"
+              ],
+              "query": [
+                {
+                  "key": "targetService",
+                  "value": "{{targetService}}",
+                  "disabled": true,
+                  "description": "Filter by target service."
+                },
+                {
+                  "key": "environment",
+                  "value": "{{environment}}",
+                  "disabled": true,
+                  "description": "Filter by environment."
+                },
+                {
+                  "key": "riskLevel",
+                  "value": "{{riskLevel}}",
+                  "disabled": true,
+                  "description": "Filter by computed risk level."
+                },
+                {
+                  "key": "changeType",
+                  "value": "{{changeType}}",
+                  "disabled": true,
+                  "description": "Filter by change type."
+                },
+                {
+                  "key": "requiresApproval",
+                  "value": "{{requiresApproval}}",
+                  "disabled": true,
+                  "description": "Only include analyses that required approval."
+                },
+                {
+                  "key": "fromDate",
+                  "value": "{{fromDate}}",
+                  "disabled": true,
+                  "description": "Only include analyses after this time."
+                },
+                {
+                  "key": "toDate",
+                  "value": "{{toDate}}",
+                  "disabled": true,
+                  "description": "Only include analyses before this time."
+                },
+                {
+                  "key": "page",
+                  "value": "{{page}}",
+                  "disabled": true,
+                  "description": "Page number (zero-based)."
+                },
+                {
+                  "key": "size",
+                  "value": "{{size}}",
+                  "disabled": true,
+                  "description": "Number of items per page."
+                }
+              ]
+            }
+          },
+          "status": "500",
+          "code": 500,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "Get detailed blast radius analysis",
+      "request": {
+        "method": "GET",
+        "description": "Get detailed blast radius analysis\n\nResponses:\n- 200: Blast radius analysis retrieved successfully.\n- 404: Response\n- 500: Response",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/blast-radius/:analysisId?includeDependencyGraph={{includeDependencyGraph}}&includeRevenueBreakdown={{includeRevenueBreakdown}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "blast-radius",
+            ":analysisId"
+          ],
+          "query": [
+            {
+              "key": "includeDependencyGraph",
+              "value": "{{includeDependencyGraph}}",
+              "disabled": true,
+              "description": "Include the full dependency graph."
+            },
+            {
+              "key": "includeRevenueBreakdown",
+              "value": "{{includeRevenueBreakdown}}",
+              "disabled": true,
+              "description": "Include per-tier revenue impact."
+            }
+          ],
+          "variable": [
+            {
+              "key": "analysisId",
+              "value": "{{analysisId}}",
+              "description": "Unique identifier of the analysis."
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200 Blast radius analysis retrieved successfully.",
+          "originalRequest": {
+            "method": "GET",
+            "description": "Get detailed blast radius analysis\n\nResponses:\n- 200: Blast radius analysis retrieved successfully.\n- 404: Response\n- 500: Response",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius/:analysisId?includeDependencyGraph={{includeDependencyGraph}}&includeRevenueBreakdown={{includeRevenueBreakdown}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius",
+                ":analysisId"
+              ],
+              "query": [
+                {
+                  "key": "includeDependencyGraph",
+                  "value": "{{includeDependencyGraph}}",
+                  "disabled": true,
+                  "description": "Include the full dependency graph."
+                },
+                {
+                  "key": "includeRevenueBreakdown",
+                  "value": "{{includeRevenueBreakdown}}",
+                  "disabled": true,
+                  "description": "Include per-tier revenue impact."
+                }
+              ],
+              "variable": [
+                {
+                  "key": "analysisId",
+                  "value": "{{analysisId}}",
+                  "description": "Unique identifier of the analysis."
+                }
+              ]
+            }
+          },
+          "status": "Blast radius analysis retrieved successfully.",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "404",
+          "originalRequest": {
+            "method": "GET",
+            "description": "Get detailed blast radius analysis\n\nResponses:\n- 200: Blast radius analysis retrieved successfully.\n- 404: Response\n- 500: Response",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius/:analysisId?includeDependencyGraph={{includeDependencyGraph}}&includeRevenueBreakdown={{includeRevenueBreakdown}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius",
+                ":analysisId"
+              ],
+              "query": [
+                {
+                  "key": "includeDependencyGraph",
+                  "value": "{{includeDependencyGraph}}",
+                  "disabled": true,
+                  "description": "Include the full dependency graph."
+                },
+                {
+                  "key": "includeRevenueBreakdown",
+                  "value": "{{includeRevenueBreakdown}}",
+                  "disabled": true,
+                  "description": "Include per-tier revenue impact."
+                }
+              ],
+              "variable": [
+                {
+                  "key": "analysisId",
+                  "value": "{{analysisId}}",
+                  "description": "Unique identifier of the analysis."
+                }
+              ]
+            }
+          },
+          "status": "404",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "500",
+          "originalRequest": {
+            "method": "GET",
+            "description": "Get detailed blast radius analysis\n\nResponses:\n- 200: Blast radius analysis retrieved successfully.\n- 404: Response\n- 500: Response",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius/:analysisId?includeDependencyGraph={{includeDependencyGraph}}&includeRevenueBreakdown={{includeRevenueBreakdown}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius",
+                ":analysisId"
+              ],
+              "query": [
+                {
+                  "key": "includeDependencyGraph",
+                  "value": "{{includeDependencyGraph}}",
+                  "disabled": true,
+                  "description": "Include the full dependency graph."
+                },
+                {
+                  "key": "includeRevenueBreakdown",
+                  "value": "{{includeRevenueBreakdown}}",
+                  "disabled": true,
+                  "description": "Include per-tier revenue impact."
+                }
+              ],
+              "variable": [
+                {
+                  "key": "analysisId",
+                  "value": "{{analysisId}}",
+                  "description": "Unique identifier of the analysis."
+                }
+              ]
+            }
+          },
+          "status": "500",
+          "code": 500,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        }
+      ]
+    },
+    {
+      "name": "Simulate failure scenarios for the analyzed change",
+      "request": {
+        "method": "POST",
+        "description": "Simulate failure scenarios for the analyzed change\n\nResponses:\n- 200: Simulation results with quantified impact.\n- 400: Response\n- 404: Response\n- 500: Response",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/blast-radius/:analysisId/simulate",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "blast-radius",
+            ":analysisId",
+            "simulate"
+          ],
+          "variable": [
+            {
+              "key": "analysisId",
+              "value": "{{analysisId}}",
+              "description": "Unique identifier of the blast radius analysis."
+            }
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "name": "200 Simulation results with quantified impact.",
+          "originalRequest": {
+            "method": "POST",
+            "description": "Simulate failure scenarios for the analyzed change\n\nResponses:\n- 200: Simulation results with quantified impact.\n- 400: Response\n- 404: Response\n- 500: Response",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius/:analysisId/simulate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius",
+                ":analysisId",
+                "simulate"
+              ],
+              "variable": [
+                {
+                  "key": "analysisId",
+                  "value": "{{analysisId}}",
+                  "description": "Unique identifier of the blast radius analysis."
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "Simulation results with quantified impact.",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "400",
+          "originalRequest": {
+            "method": "POST",
+            "description": "Simulate failure scenarios for the analyzed change\n\nResponses:\n- 200: Simulation results with quantified impact.\n- 400: Response\n- 404: Response\n- 500: Response",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius/:analysisId/simulate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius",
+                ":analysisId",
+                "simulate"
+              ],
+              "variable": [
+                {
+                  "key": "analysisId",
+                  "value": "{{analysisId}}",
+                  "description": "Unique identifier of the blast radius analysis."
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "400",
+          "code": 400,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "404",
+          "originalRequest": {
+            "method": "POST",
+            "description": "Simulate failure scenarios for the analyzed change\n\nResponses:\n- 200: Simulation results with quantified impact.\n- 400: Response\n- 404: Response\n- 500: Response",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius/:analysisId/simulate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius",
+                ":analysisId",
+                "simulate"
+              ],
+              "variable": [
+                {
+                  "key": "analysisId",
+                  "value": "{{analysisId}}",
+                  "description": "Unique identifier of the blast radius analysis."
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "404",
+          "code": 404,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        },
+        {
+          "name": "500",
+          "originalRequest": {
+            "method": "POST",
+            "description": "Simulate failure scenarios for the analyzed change\n\nResponses:\n- 200: Simulation results with quantified impact.\n- 400: Response\n- 404: Response\n- 500: Response",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/blast-radius/:analysisId/simulate",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "blast-radius",
+                ":analysisId",
+                "simulate"
+              ],
+              "variable": [
+                {
+                  "key": "analysisId",
+                  "value": "{{analysisId}}",
+                  "description": "Unique identifier of the blast radius analysis."
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "status": "500",
+          "code": 500,
+          "_postman_previewlanguage": "json",
+          "header": [],
+          "body": ""
+        }
+      ]
+    }
+  ]
+}
