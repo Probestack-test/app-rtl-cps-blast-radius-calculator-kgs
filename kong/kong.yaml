@@ -1,0 +1,89 @@
+_format_version: "3.0"
+_transform: true
+
+########################################################
+# SERVICES
+########################################################
+
+services:
+  - name: blast-radius-calculator
+    host: blast-radius-calculator
+    port: 443
+    protocol: https
+    path: /api
+    retries: 5
+    connect_timeout: 60000
+    write_timeout: 60000
+    read_timeout: 60000
+    routes:
+      - name: blast-radius-calculator-get-blast-radius
+        protocols:
+          - https
+          - http
+        methods:
+          - GET
+        hosts:
+          - api.example.com
+        paths:
+          - /blast-radius
+        strip_path: true
+        preserve_host: false
+        https_redirect_status_code: 426
+      - name: blast-radius-calculator-post-blast-radius
+        protocols:
+          - https
+          - http
+        methods:
+          - POST
+        hosts:
+          - api.example.com
+        paths:
+          - /blast-radius
+        strip_path: true
+        preserve_host: false
+        https_redirect_status_code: 426
+      - name: blast-radius-calculator-get-blast-radius-analysisid
+        protocols:
+          - https
+          - http
+        methods:
+          - GET
+        hosts:
+          - api.example.com
+        paths:
+          - /blast-radius/{analysisId}
+        strip_path: true
+        preserve_host: false
+        https_redirect_status_code: 426
+      - name: blast-radius-calculator-post-blast-radius-analysisid-simulate
+        protocols:
+          - https
+          - http
+        methods:
+          - POST
+        hosts:
+          - api.example.com
+        paths:
+          - /blast-radius/{analysisId}/simulate
+        strip_path: true
+        preserve_host: false
+        https_redirect_status_code: 426
+
+########################################################
+# PLUGINS
+########################################################
+
+plugins:
+  []
+
+########################################################
+# UPSTREAMS + TARGETS
+########################################################
+
+upstreams:
+  - name: blast-radius-calculator
+    algorithm: round-robin
+    slots: 10000
+    targets:
+      - target: api.example.com:443
+        weight: 100
